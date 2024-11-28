@@ -37,7 +37,7 @@ This project was developed based on the requirements of the Spring Advanced cour
 
 ## Challenges Faced
 
-- **Managing Security Requirements**: A key focus was on implementing a secure system. We avoided hardcoding passwords by using environment variables, which was crucial for safe deployment, particularly when hosting the project in public repositories like GitHub.
+- **Managing Security Requirements**: A key focus was on implementing a secure system. The team avoided hardcoding passwords by using environment variables, which was crucial for safe deployment, particularly when hosting the project in public repositories like GitHub.
 - **Blockchain Implementation**: Integrating blockchain concepts, while novel and beneficial for voting security, required additional learning and experimentation.
 - **Maintaining Clean Code and Structure**: Ensuring adherence to SOLID principles and keeping controllers "thin" required careful attention to architectural decisions, particularly when adding new features.
 

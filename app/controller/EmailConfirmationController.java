@@ -14,10 +14,11 @@ public class EmailConfirmationController {
     private UserRepository userRepository;
 
     @GetMapping("/confirm-email")
-    public String confirmEmail(@RequestParam String username) {
-        User user = userRepository.findByUsername(username);
+    public String confirmEmail(@RequestParam String token) {
+        User user = userRepository.findByConfirmationToken(token);
         if (user != null) {
             user.getRoles().add("ROLE_CONFIRMED");
+            user.setConfirmationToken(null); 
             userRepository.save(user);
             return "email_confirmation_success";
         } else {

@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project was developed based on the requirements of the Spring Advanced course assignment, aiming to create an innovative web application that uses blockchain technology to enable user voting and predict user activity. It combines several core functionalities, including data visualization, blockchain integration, and user management, to deliver a secure and informative platform. The project was built using modern technologies such as Spring Boot, Spring Data, and Spring Security, with additional features like email verification, REST API integration, and scheduled tasks.
+This project is currently under development, based on the requirements of the Spring Advanced course assignment, aiming to create an innovative web application that uses blockchain technology to enable user voting and predict user activity. It aims to combine several core functionalities, including data visualization, blockchain integration, and user management, to deliver a secure and informative platform. The project is being built using modern technologies such as Spring Boot, Spring Data, and Spring Security, with additional features like email verification, REST API integration, and scheduled tasks.
 
 ## Core Features
 
@@ -55,4 +55,4 @@ This project was developed based on the requirements of the Spring Advanced cour
 
 ## Conclusion
 
-This project was a great learning experience, combining various technologies into a cohesive application with real-world relevance. By integrating blockchain for security, REST APIs for scalability, and prediction models for insights, we achieved a complex but effective solution. The main takeaway was the importance of modular design, security best practices, and an iterative approach to development, which will undoubtedly be valuable in future projects.
+This project is a great learning experience, combining various technologies into a cohesive application with real-world relevance. By integrating blockchain for security, REST APIs for scalability, and prediction models for insights, achieved a complex but effective solution. The main takeaway was the importance of modular design, security best practices, and an iterative approach to development, which will undoubtedly be valuable in future projects.

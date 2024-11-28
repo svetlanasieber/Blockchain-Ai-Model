@@ -37,15 +37,15 @@ This project is currently under development, based on the requirements of the Sp
 
 ## Challenges Faced
 
-- **Managing Security Requirements**: A key focus was on implementing a secure system. The team avoided hardcoding passwords by using environment variables, which was crucial for safe deployment, particularly when hosting the project in public repositories like GitHub.
+
 - **Blockchain Implementation**: Integrating blockchain concepts, while novel and beneficial for voting security, required additional learning and experimentation.
 - **Maintaining Clean Code and Structure**: Ensuring adherence to SOLID principles and keeping controllers "thin" required careful attention to architectural decisions, particularly when adding new features.
 
 ## Innovations and Extra Features
 
 - **AI Activity Prediction**: One of the innovative aspects was integrating a prediction model for user activity, which utilized statistical techniques to forecast peak usage times.
-- **Microservices**: We extended the application using a microservice for activity-related data, which communicates with the main project via REST API.
-- **Email Confirmation with Secure Token**: To enhance user verification, we added a secure email confirmation mechanism using unique tokens to prevent unauthorized access.
+- **Microservices**:  extended the application using a microservice for activity-related data, which communicates with the main project via REST API.
+- **Email Confirmation with Secure Token**: To enhance user verification, added a secure email confirmation mechanism using unique tokens to prevent unauthorized access.
 
 ## Future Enhancements
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction History</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<h2>Prediction History</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Day of Week</th>
+            <th>Hour of Day</th>
+            <th>Prediction Result</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody th:each="prediction : ${predictions}">
+        <tr>
+            <td th:text="${prediction.dayOfWeek}"></td>
+            <td th:text="${prediction.hourOfDay}"></td>
+            <td th:text="${prediction.predictionResult}"></td>
+            <td th:text="${prediction.timestamp}"></td>
+        </tr>
+    </tbody>
+</table>
+
+<a href="/activity-form">Back to Activity Forecast</a>
+
+</body>
+</html>

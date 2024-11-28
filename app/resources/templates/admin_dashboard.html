@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h2>Admin Dashboard - User Activity Analytics</h2>
+
+
+<h3>Most Active Days of the Week</h3>
+<canvas id="mostActiveDaysChart" width="400" height="200"></canvas>
+
+
+<h3>Most Active Hours of the Day</h3>
+<canvas id="mostActiveHoursChart" width="400" height="200"></canvas>
+
+<a href="/admin/prediction-history">View Prediction History</a>
+
+<script>
+    $(document).ready(function() {
+      
+        $.ajax({
+            url: '/admin/activity-stats/days',
+            method: 'GET',
+            success: function(data) {
+                const ctx = document.getElementById('mostActiveDaysChart').getContext('2d');
+                const mostActiveDaysChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                        datasets: [{
+                            label: 'Number of Activities',
+                            data: data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            },
+            error: function() {
+                alert('Error fetching most active days data.');
+            }
+        });
+
+      
+        $.ajax({
+            url: '/admin/activity-stats/hours',
+            method: 'GET',
+            success: function(data) {
+                const ctx = document.getElementById('mostActiveHoursChart').getContext('2d');
+                const mostActiveHoursChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: Array.from({length: 24}, (_, i) => i + ":00"),
+                        datasets: [{
+                            label: 'Number of Activities',
+                            data: data,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            },
+            error: function() {
+                alert('Error fetching most active hours data.');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

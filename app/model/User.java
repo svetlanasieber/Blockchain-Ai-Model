@@ -19,8 +19,7 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
 
-    private String confirmationToken;  // Ново поле за токена за потвърждение
-
+    private String confirmationToken;  
     public User() {}
 
     public User(String username, String password, Set<String> roles) {

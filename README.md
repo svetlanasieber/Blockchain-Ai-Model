@@ -1,6 +1,9 @@
+# This project is currently under development
+
+
+
 # Blockchain Voting and User Activity Prediction Project
 
-# This project is currently under development
 
 ## Overview
 

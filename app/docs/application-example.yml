@@ -1,0 +1,39 @@
+# Example application configuration file for Blockchain Voting project
+# This file is used as a template and should not contain any real passwords or API keys.
+
+spring:
+  mail:
+    host: smtp.example.com                # Replace with your SMTP server (e.g., smtp.gmail.com)
+    port: 587                             # Replace with your SMTP server port
+    username: your_email@example.com      # Replace with your email username
+    password: ${EMAIL_PASSWORD}           # Use an environment variable or replace with a placeholder
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/blockchain_voting_db    # Replace with your actual database URL
+    username: db_username                                   # Replace with your database username
+    password: ${DB_PASSWORD}                                # Use an environment variable for the database password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8080   # Replace with the port you want to use for the server
+
+admin:
+  username: admin                  # Default username for the admin account
+  password: ${ADMIN_PASSWORD}      # Admin password should be set via an environment variable
+
+logging:
+  level:
+    root: INFO
+    com.example.blockchainvoting: DEBUG # Set the logging level for debugging your application
+
+# Example external service configuration (if applicable)
+external:
+  api:
+    base-url: https://api.example.com
+    key: ${EXTERNAL_API_KEY}    # Use environment variable for API key

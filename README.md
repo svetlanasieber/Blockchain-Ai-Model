@@ -5,9 +5,6 @@
 # Blockchain Voting and User Activity Prediction Project
 
 
-## Overview
-
-This project is currently under development, based on the requirements of the Spring Advanced course assignment, aiming to create an innovative web application that uses blockchain technology to enable user voting and predict user activity. It aims to combine several core functionalities, including data visualization, blockchain integration, and user management, to deliver a secure and informative platform. The project is being built using modern technologies such as Spring Boot, Spring Data, and Spring Security, with additional features like email verification, REST API integration, and scheduled tasks.
 
 ## Core Features
 

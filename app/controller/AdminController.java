@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -16,9 +18,12 @@ public class AdminController {
     private PredictionHistoryRepository predictionHistoryRepository;
 
     @GetMapping("/admin/prediction-history")
-    public String viewPredictionHistory(Model model) {
-        List<PredictionHistory> predictions = predictionHistoryRepository.findAll();
-        model.addAttribute("predictions", predictions);
-        return "prediction_history";
+    @ResponseBody
+    public List<PredictionHistory> viewPredictionHistory(@RequestParam(required = false) Integer dayOfWeek) {
+        if (dayOfWeek != null) {
+            return predictionHistoryRepository.findByDayOfWeek(dayOfWeek);
+        } else {
+            return predictionHistoryRepository.findAll();
+        }
     }
 }

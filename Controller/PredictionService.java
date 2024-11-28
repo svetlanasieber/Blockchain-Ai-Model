@@ -1,16 +1,32 @@
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+package com.example.blockchainvoting.service;
 
-@RestController
-public class PredictionController {
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-    @Autowired
-    private PredictionService predictionService;
+@Service
+public class PredictionService {
 
-    @GetMapping("/predict-activity")
-    public String predictActivity(@RequestParam int dayOfWeek, @RequestParam int hourOfDay) {
-        return predictionService.getPrediction(dayOfWeek, hourOfDay);
+    private final String PREDICTION_API_URL = "http://localhost:5000/predict";
+
+    public String getPrediction(int dayOfWeek, int hourOfDay) {
+        RestTemplate restTemplate = new RestTemplate();
+        
+     
+        String jsonPayload = String.format("{\"day_of_week\": %d, \"hour_of_day\": %d}", dayOfWeek, hourOfDay);
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Content-Type", "application/json");
+        
+        HttpEntity<String> entity = new HttpEntity<>(jsonPayload, headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(
+            PREDICTION_API_URL, HttpMethod.POST, entity, String.class
+        );
+
+        return response.getBody();
     }
 }

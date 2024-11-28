@@ -50,7 +50,7 @@ This project is currently under development, based on the requirements of the Sp
 ## Future Enhancements
 
 - **AI Model Integration for Deeper Insights**: Expanding the prediction capabilities by integrating more advanced machine learning models to provide deeper insights into user behavior.
-- **Frontend Enhancement**: Consider using modern JavaScript frameworks like React or Angular to enhance the responsiveness and user experience.
+- **Frontend Enhancement**: using modern JavaScript frameworks like React or Angular to enhance the responsiveness and user experience.
 - **Cloud Deployment**: Deploying the application in a cloud environment like AWS or Azure, adding cloud-specific services such as managed databases or load balancers.
 
 ## Conclusion

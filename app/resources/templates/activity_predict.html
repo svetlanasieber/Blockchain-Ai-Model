@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Activity Forecasting</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <!-- Including Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<h2>User Activity Forecasting</h2>
+
+<form th:action="@{/predict-activity}" method="get">
+    <label for="dayOfWeek">Day of the Week (1-7):</label>
+    <input type="number" id="dayOfWeek" name="dayOfWeek" min="1" max="7" required>
+    
+    <label for="hourOfDay">Hour of the Day (0-23):</label>
+    <input type="number" id="hourOfDay" name="hourOfDay" min="0" max="23" required>
+    
+    <button type="submit">Forecast</button>
+</form>
+
+<div th:if="${activityResult != null}">
+    <h3>Result:</h3>
+    <p th:text="${activityResult}"></p>
+</div>
+
+<!-- Adding Canvas Element for Chart -->
+<canvas id="activityChart" width="400" height="200"></canvas>
+
+<!-- Including our JavaScript file for initializing the chart -->
+<script th:src="@{/js/chart.js}"></script>
+
+</body>
+</html>

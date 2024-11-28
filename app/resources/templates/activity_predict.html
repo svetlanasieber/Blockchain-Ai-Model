@@ -6,12 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
     <!-- Including Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
 <h2>User Activity Forecasting</h2>
 
-<form th:action="@{/predict-activity}" method="get">
+<form id="forecastForm">
     <label for="dayOfWeek">Day of the Week (1-7):</label>
     <input type="number" id="dayOfWeek" name="dayOfWeek" min="1" max="7" required>
     
@@ -21,9 +22,9 @@
     <button type="submit">Forecast</button>
 </form>
 
-<div th:if="${activityResult != null}">
+<div id="resultSection" style="display: none;">
     <h3>Result:</h3>
-    <p th:text="${activityResult}"></p>
+    <p id="activityResult"></p>
 </div>
 
 <!-- Adding Canvas Element for Chart -->
@@ -31,6 +32,36 @@
 
 <!-- Including our JavaScript file for initializing the chart -->
 <script th:src="@{/js/chart.js}"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#forecastForm').on('submit', function(event) {
+            event.preventDefault(); 
+
+          
+            const dayOfWeek = $('#dayOfWeek').val();
+            const hourOfDay = $('#hourOfDay').val();
+
+          
+            $.ajax({
+                url: '/predict-activity',
+                method: 'GET',
+                data: {
+                    dayOfWeek: dayOfWeek,
+                    hourOfDay: hourOfDay
+                },
+                success: function(response) {
+                    
+                    $('#resultSection').show();
+                    $('#activityResult').text(response);
+                },
+                error: function() {
+                    alert('Error fetching prediction. Please try again.');
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

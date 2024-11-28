@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project was developed as part of the Spring Advanced course at SoftUni, aiming to create an innovative web application that uses blockchain technology to enable user voting and predict user activity. It combines several core functionalities, including data visualization, blockchain integration, and user management, to deliver a secure and informative platform. The project was built using modern technologies such as Spring Boot, Spring Data, and Spring Security, with additional features like email verification, REST API integration, and scheduled tasks.
+This project was developed based on the requirements of the Spring Advanced course assignment, aiming to create an innovative web application that uses blockchain technology to enable user voting and predict user activity. It combines several core functionalities, including data visualization, blockchain integration, and user management, to deliver a secure and informative platform. The project was built using modern technologies such as Spring Boot, Spring Data, and Spring Security, with additional features like email verification, REST API integration, and scheduled tasks.
 
 ## Core Features
 

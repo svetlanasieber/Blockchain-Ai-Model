@@ -2,6 +2,7 @@ package com.example.blockchainvoting.model;
 
 import jakarta.persistence.*;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 public class User {
@@ -18,15 +19,19 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
 
+    private String confirmationToken;  // Ново поле за токена за потвърждение
+
     public User() {}
 
     public User(String username, String password, Set<String> roles) {
         this.username = username;
         this.password = password;
         this.roles = roles;
+        this.confirmationToken = UUID.randomUUID().toString();
     }
 
   
+
     public Long getId() {
         return id;
     }
@@ -53,5 +58,13 @@ public class User {
 
     public void setRoles(Set<String> roles) {
         this.roles = roles;
+    }
+
+    public String getConfirmationToken() {
+        return confirmationToken;
+    }
+
+    public void setConfirmationToken(String confirmationToken) {
+        this.confirmationToken = confirmationToken;
     }
 }

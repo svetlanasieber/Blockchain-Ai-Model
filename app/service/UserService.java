@@ -25,16 +25,19 @@ public class UserService implements UserDetailsService {
     private EmailService emailService;
 
     public void registerUser(String username, String password, String email) {
+       
         User user = new User(username, passwordEncoder.encode(password), new HashSet<>());
         user.getRoles().add("ROLE_USER");
         userRepository.save(user);
 
-      
+  
         String subject = "Welcome to Blockchain Voting - Confirm Your Email";
-        String text = "Hello " + username + ",\n\nPlease confirm your email address by clicking the link below:\n"
-                      + "http://localhost:8080/confirm-email?username=" + username;
+        String confirmationUrl = "http://localhost:8080/confirm-email?token=" + user.getConfirmationToken();
+        String htmlContent = "<h1>Hello " + username + ",</h1>"
+                             + "<p>Please confirm your email address by clicking the link below:</p>"
+                             + "<a href=\"" + confirmationUrl + "\">Confirm Email</a>";
 
-        emailService.sendEmail(email, subject, text);
+        emailService.sendHtmlEmail(email, subject, htmlContent);
     }
 
     public void registerAdmin(String username, String password) {

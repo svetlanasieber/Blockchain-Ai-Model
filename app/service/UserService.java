@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -22,10 +21,20 @@ public class UserService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public void registerUser(String username, String password) {
+    @Autowired
+    private EmailService emailService;
+
+    public void registerUser(String username, String password, String email) {
         User user = new User(username, passwordEncoder.encode(password), new HashSet<>());
         user.getRoles().add("ROLE_USER");
         userRepository.save(user);
+
+      
+        String subject = "Welcome to Blockchain Voting - Confirm Your Email";
+        String text = "Hello " + username + ",\n\nPlease confirm your email address by clicking the link below:\n"
+                      + "http://localhost:8080/confirm-email?username=" + username;
+
+        emailService.sendEmail(email, subject, text);
     }
 
     public void registerAdmin(String username, String password) {

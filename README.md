@@ -1,1 +1,1 @@
-# Blockchainvoting App
+# BlockchainVoting App

@@ -10,12 +10,14 @@
 
 <h2>Prediction History</h2>
 
+<div class="filter-section">
+   
+    <label for="filterDayOfWeek">Filter by Day of the Week (1-7):</label>
+    <input type="number" id="filterDayOfWeek" name="filterDayOfWeek" min="1" max="7">
+    <button id="filterButton">Filter</button>
+</div>
 
-<label for="filterDayOfWeek">Filter by Day of the Week (1-7):</label>
-<input type="number" id="filterDayOfWeek" name="filterDayOfWeek" min="1" max="7">
-<button id="filterButton">Filter</button>
-
-<table border="1">
+<table border="1" class="prediction-table">
     <thead>
         <tr>
             <th>Day of Week</th>
@@ -25,14 +27,14 @@
         </tr>
     </thead>
     <tbody id="predictionsTableBody">
-    
+      
     </tbody>
 </table>
 
 <a href="/activity-form">Back to Activity Forecast</a>
 
 <script>
-    
+ 
     function fetchPredictions(filterDayOfWeek) {
         $.ajax({
             url: '/admin/prediction-history',
@@ -44,34 +46,9 @@
                 const tableBody = $('#predictionsTableBody');
                 tableBody.empty(); 
 
-               
+             
                 predictions.forEach(function(prediction) {
                     const row = `<tr>
                         <td>${prediction.dayOfWeek}</td>
                         <td>${prediction.hourOfDay}</td>
-                        <td>${prediction.predictionResult}</td>
-                        <td>${prediction.timestamp}</td>
-                    </tr>`;
-                    tableBody.append(row);
-                });
-            },
-            error: function() {
-                alert('Error fetching predictions. Please try again.');
-            }
-        });
-    }
-
-    
-    $(document).ready(function() {
-        $('#filterButton').on('click', function() {
-            const filterDayOfWeek = $('#filterDayOfWeek').val();
-            fetchPredictions(filterDayOfWeek);
-        });
-
-        
-        fetchPredictions();
-    });
-</script>
-
-</body>
-</html>
+                        <td>${predict

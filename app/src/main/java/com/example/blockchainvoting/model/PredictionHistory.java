@@ -26,7 +26,7 @@ public class PredictionHistory {
         this.timestamp = timestamp;
     }
 
-    // Getters и Setters
+
     public Long getId() {
         return id;
     }

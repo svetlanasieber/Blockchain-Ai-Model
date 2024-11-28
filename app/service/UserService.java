@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Optional;
 
@@ -25,6 +26,19 @@ public class UserService implements UserDetailsService {
         User user = new User(username, passwordEncoder.encode(password), new HashSet<>());
         user.getRoles().add("ROLE_USER");
         userRepository.save(user);
+    }
+
+    public void registerAdmin(String username, String password) {
+        User user = new User(username, passwordEncoder.encode(password), new HashSet<>());
+        user.getRoles().add("ROLE_ADMIN");
+        userRepository.save(user);
+    }
+
+    @PostConstruct
+    public void initAdminUser() {
+        if (userRepository.findByUsername("admin") == null) {
+            registerAdmin("admin", "admin123");
+        }
     }
 
     @Override

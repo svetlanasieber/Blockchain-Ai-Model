@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/blockchain_voting
+    username: root
+    password: your_password
+  mail:
+    host: smtp.example.com
+    port: 587
+    username: your_email@example.com
+    password: your_email_password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

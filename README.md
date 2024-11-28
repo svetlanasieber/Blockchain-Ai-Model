@@ -45,7 +45,7 @@ This project is currently under development, based on the requirements of the Sp
 
 ## Innovations and Extra Features
 
-- **AI Activity Prediction**: One of the innovative aspects was integrating a prediction model for user activity, which utilized statistical techniques to forecast peak usage times.
+- **AI Activity Prediction**: One of the innovative aspects is integrating a prediction model for user activity, which utilized statistical techniques to forecast peak usage times.
 - **Microservices**:  extended the application using a microservice for activity-related data, which communicates with the main project via REST API.
 - **Email Confirmation with Secure Token**: To enhance user verification, added a secure email confirmation mechanism using unique tokens to prevent unauthorized access.
 

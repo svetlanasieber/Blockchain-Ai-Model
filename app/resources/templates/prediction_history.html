@@ -10,13 +10,6 @@
 
 <h2>Prediction History</h2>
 
-<div class="filter-section">
-   
-    <label for="filterDayOfWeek">Filter by Day of the Week (1-7):</label>
-    <input type="number" id="filterDayOfWeek" name="filterDayOfWeek" min="1" max="7">
-    <button id="filterButton">Filter</button>
-</div>
-
 <table border="1" class="prediction-table">
     <thead>
         <tr>
@@ -24,31 +17,43 @@
             <th>Hour of Day</th>
             <th>Prediction Result</th>
             <th>Timestamp</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody id="predictionsTableBody">
-      
+        <tr th:each="prediction : ${predictions}">
+            <td th:text="${prediction.dayOfWeek}"></td>
+            <td th:text="${prediction.hourOfDay}"></td>
+            <td th:text="${prediction.predictionResult}"></td>
+            <td th:text="${prediction.timestamp}"></td>
+            <td>
+                <button class="delete-button" th:attr="data-id=${prediction.id}">Delete</button>
+            </td>
+        </tr>
     </tbody>
 </table>
 
 <a href="/activity-form">Back to Activity Forecast</a>
 
 <script>
- 
-    function fetchPredictions(filterDayOfWeek) {
-        $.ajax({
-            url: '/admin/prediction-history',
-            method: 'GET',
-            data: {
-                dayOfWeek: filterDayOfWeek
-            },
-            success: function(predictions) {
-                const tableBody = $('#predictionsTableBody');
-                tableBody.empty(); 
+    $(document).ready(function() {
+       
+        $('.delete-button').on('click', function() {
+            const predictionId = $(this).data('id');
+            $.ajax({
+                url: '/admin/prediction-history/' + predictionId,
+                method: 'DELETE',
+                success: function() {
+                    alert('Prediction deleted successfully!');
+                    location.reload(); 
+                },
+                error: function() {
+                    alert('Error deleting prediction.');
+                }
+            });
+        });
+    });
+</script>
 
-             
-                predictions.forEach(function(prediction) {
-                    const row = `<tr>
-                        <td>${prediction.dayOfWeek}</td>
-                        <td>${prediction.hourOfDay}</td>
-                        <td>${predict
+</body>
+</html>

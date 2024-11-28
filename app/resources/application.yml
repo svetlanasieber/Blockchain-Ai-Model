@@ -3,7 +3,7 @@ spring:
     host: smtp.example.com
     port: 587
     username: your_email@example.com
-    password: your_email_password
+    password: ${EMAIL_PASSWORD} 
     properties:
       mail:
         smtp:

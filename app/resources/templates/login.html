@@ -8,6 +8,10 @@
 
 <h2>Login</h2>
 
+<div th:if="${successMessage}" class="success-message">
+    <p th:text="${successMessage}"></p>
+</div>
+
 <form th:action="@{/login}" method="post">
     <label for="username">Username:</label>
     <input type="text" id="username" name="username" required>

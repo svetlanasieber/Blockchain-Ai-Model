@@ -25,12 +25,10 @@ public class UserService implements UserDetailsService {
     private EmailService emailService;
 
     public void registerUser(String username, String password, String email) {
-       
         User user = new User(username, passwordEncoder.encode(password), new HashSet<>());
         user.getRoles().add("ROLE_USER");
         userRepository.save(user);
 
-  
         String subject = "Welcome to Blockchain Voting - Confirm Your Email";
         String confirmationUrl = "http://localhost:8080/confirm-email?token=" + user.getConfirmationToken();
         String htmlContent = "<h1>Hello " + username + ",</h1>"
@@ -46,12 +44,18 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    @PostConstruct
-    public void initAdminUser() {
-        if (userRepository.findByUsername("admin") == null) {
-            registerAdmin("admin", "admin123");
+  @PostConstruct
+public void initAdminUser() {
+    if (userRepository.findByUsername("admin") == null) {
+      
+        String adminPassword = System.getenv("ADMIN_PASSWORD");
+        if (adminPassword == null) {
+            throw new IllegalStateException("Admin password not set. Please set the ADMIN_PASSWORD environment variable.");
         }
+        registerAdmin("admin", adminPassword);
     }
+}
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
